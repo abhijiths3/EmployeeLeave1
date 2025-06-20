@@ -1,0 +1,29 @@
+<header class="header">
+  <h1> 🧩 Leave Manager</h1>
+  <div class="header-right">
+    <span class="hamburger">&#9776;</span>
+    <button class="logout-btn">Logout</button>
+  </div>
+</header>
+
+
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a routerLink="employees">🛡️ Employees</a></li>
+      <li><a routerLink="types">📄 Leave Types</a></li>
+      <li><a routerLink="departments">🏢 Departments</a></li> 
+      <li><a routerLink="requests">📋 Leave Requests</a></li>     
+    </ul>
+  </nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+</div>
+
+<footer class="footer">
+  <p>&copy; 2025 Leave Manager. All rights reserved.</p>
+</footer>

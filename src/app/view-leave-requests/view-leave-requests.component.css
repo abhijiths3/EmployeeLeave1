@@ -1,0 +1,60 @@
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  border: 1px solid #dcdde1;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.request-table th {
+  background: linear-gradient(to right, #2d3436, #4a69bd);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.request-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.request-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.request-table tr:hover {
+  background-color: #dff9fb;
+  cursor: pointer;
+}
+
+.error {
+  color: #e74c3c;
+  font-weight: 600;
+  margin-top: 12px;
+}
+button.accept-btn {
+  background-color: #1abc9c;
+  color: white;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.reject-btn {
+  background-color: #f39c12;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+button.accept-btn:hover,
+button.reject-btn:hover {
+  opacity: 0.9;
+}
