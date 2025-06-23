@@ -31,16 +31,36 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
   hasError(controlName: string, errorType: string): boolean {
     return this.userForm.get(controlName)?.hasError(errorType) ?? false;
   }
-  loadUsers() {
-    this.loginService.getUser().subscribe({
+  // loadUsers() {
+  //   this.loginService.getUser().subscribe({
       
-      next: (users) => {
-        console.log('Fetched users:', users); 
-        this.User = users;
-      },
-      error: () => {
-        this.errormessage = 'Failed to load users.';
-      }
-    });
-  }
+  //     next: (users) => {
+  //       console.log('Fetched users:', users); 
+  //       this.User = users;
+  //     },
+  //     error: () => {
+  //       this.errormessage = 'Failed to load users.';
+  //     }
+  //   });
+  // }
+  loadUsers() {
+  this.loginService.getUser().subscribe({
+    next: (response: any) => {
+      console.log('Fetched raw users:', response);
+
+      const users = Array.isArray(response) ? response : response?.$values || [];
+
+     this.User = users.map((u: any) => ({
+  EmployeeName: u.employeeName || u.EmployeeName,
+  Email: u.email || u.Email,
+  DepartmentName: u.departmentName || u.DepartmentName
+}));
+
+    },
+    error: () => {
+      this.errormessage = 'Failed to load users.';
+    }
+  });
+}
+
 }

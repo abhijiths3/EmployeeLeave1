@@ -1,13 +1,13 @@
 <!-- No Department Message Template -->
-<ng-template #noDepartment>
+<!-- <ng-template #noDepartment>
   <p *ngIf="!isLoading && Department.length === 0 && !errormessage">No Department Found</p>
-</ng-template>
+</ng-template> -->
 
 <!-- Error Message -->
-<p *ngIf="errormessage" class="error">{{ errormessage }}</p>
+<!-- <p *ngIf="errormessage" class="error">{{ errormessage }}</p> -->
 
 <!-- Colorful Department Table -->
-<table *ngIf="!isLoading && Department.length > 0; else noDepartment" class="department-table">
+<!-- <table *ngIf="!isLoading && Department.length > 0; else noDepartment" class="department-table">
   <thead>
     <tr>
       <th>🏢 Department Names</th>
@@ -18,4 +18,40 @@
       <td>{{ department.DepartmentName }}</td>
     </tr>
   </tbody>
+</table> -->
+
+
+<!-- Error Message -->
+<p *ngIf="errormessage" class="error">
+  ⚠️ {{ errormessage }}
+</p>
+
+<!-- Loading Spinner -->
+<p *ngIf="isLoading && !errormessage" class="loading">
+  Loading departments...
+</p>
+
+<!-- Department Table -->
+<table
+  *ngIf="!isLoading && Department.length > 0 && !errormessage; else noDepartment"
+  class="department-table"
+>
+  <thead>
+    <tr>
+      <th>🏢 Department Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let department of Department">
+      <td>{{ department.DepartmentName || department.departmentName }}</td>
+    </tr>
+  </tbody>
 </table>
+
+<!-- No Department Template -->
+<ng-template #noDepartment>
+  <p *ngIf="!isLoading && Department.length === 0 && !errormessage" class="no-data">
+    No departments found.
+  </p>
+</ng-template>
+

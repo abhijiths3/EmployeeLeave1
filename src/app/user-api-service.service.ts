@@ -7,12 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class UserApiServiceService {
   private apiUrl='https://localhost:7225/api/Employee';
+ 
   private loginUrl='https://localhost:7225/api/Authorization/login';
   private apiUrl2='https://localhost:7225/api/Leavetype';
   private apiUrl3='https://localhost:7225/api/Department';
   private apiUrl4='https://localhost:7225/api/LeaveRequest/All Leave Requests';
   private apiUrl5='https://localhost:7225/api/LeaveRequest/ApproveRequest19'
   private apiUrl6='https://localhost:7225/api/Leavetype'
+  private apiUrlReset='https://localhost:7225/api/Employee/ResetAnnualLeave';
+  private apiUrlRegister='https://localhost:7225/api/Employee';
   constructor(private http:HttpClient) { }
   
   //Employee
@@ -67,5 +70,21 @@ addLeaveType(data: { Type: string; Description?: string }): Observable<any> {
     withCredentials: true
   });
 }
+
+anualReset():Observable<any>{
+  return this.http.put(this.apiUrlReset,{},{
+    withCredentials: true
+  })
+}
+
+registerEmployee(employeeData: any): Observable<any> {
+  return this.http.post(this.apiUrlRegister, employeeData, {
+    withCredentials: true
+  });
+}
+createLogin(login: any): Observable<any> {
+  return this.http.post<any>('https://localhost:7225/api/Login', login);
+}
+
 
 }

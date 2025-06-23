@@ -1,0 +1,147 @@
+<!-- <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <h2>Register</h2>
+
+  <label>
+    Name:
+    <input formControlName="employeeName" />
+    <div *ngIf="hasError('employeeName', 'required')" class="error">Name is required.</div>
+  </label>
+
+  <label>
+    Age:
+    <input type="number" formControlName="age" />
+    <div *ngIf="hasError('age', 'required')" class="error">Age is required.</div>
+  </label>
+
+  <label>
+    Email:
+    <input type="email" formControlName="email" />
+    <div *ngIf="hasError('email', 'required')" class="error">Email is required.</div>
+    <div *ngIf="hasError('email', 'email')" class="error">Invalid email format.</div>
+  </label>
+
+  <label>
+    Phone:
+    <input type="tel" formControlName="phone" />
+    <div *ngIf="hasError('phone', 'required')" class="error">Phone is required.</div>
+    <div *ngIf="hasError('phone', 'pattern')" class="error">Must be 10 digits.</div>
+  </label>
+
+  <label>
+    Department:
+    <select formControlName="departmentId" (change)="onDepartmentChange($event)">
+      <option [ngValue]="null">-- Select Department --</option>
+      <option *ngFor="let dept of Department" [ngValue]="dept.id">
+        {{ dept.DepartmentName }}
+      </option>
+    </select>
+    <div *ngIf="hasError('departmentId', 'required')" class="error">Department is required.</div>
+  </label>
+
+  <div *ngIf="selectedDeptId !== null" class="info">
+    Selected Department ID: {{ selectedDeptId }}
+  </div>
+
+  <label>
+    Manager:
+    <select formControlName="userId" (change)="onUserChange($event)">
+      <option [ngValue]="null">-- Select Manager --</option>
+      <option *ngFor="let user of User" [ngValue]="user.id">
+        {{ user.EmployeeName }}
+      </option>
+    </select>
+    <div *ngIf="hasError('userId', 'required')" class="error">Manager is required.</div>
+  </label>
+
+  <div *ngIf="selectedUserId !== null" class="info">
+    Selected Manager ID: {{ selectedUserId }}
+  </div>
+
+  <label>
+    Username:
+    <input formControlName="username" />
+    <div *ngIf="hasError('username', 'required')" class="error">Username is required.</div>
+  </label>
+
+  <label>
+    Password:
+    <input type="password" formControlName="password" />
+    <div *ngIf="hasError('password', 'required')" class="error">Password is required.</div>
+  </label>
+
+  <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+</form> -->
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <h2>Register</h2>
+
+  <label>
+    Name:
+    <input formControlName="employeeName" />
+    <div *ngIf="hasError('employeeName', 'required')" class="error">Name is required.</div>
+  </label>
+
+  <label>
+    Age:
+    <input type="number" formControlName="age" />
+    <div *ngIf="hasError('age', 'required')" class="error">Age is required.</div>
+  </label>
+
+  <label>
+    Email:
+    <input type="email" formControlName="email" />
+    <div *ngIf="hasError('email', 'required')" class="error">Email is required.</div>
+    <div *ngIf="hasError('email', 'email')" class="error">Invalid email format.</div>
+  </label>
+
+  <label>
+    Phone:
+    <input type="tel" formControlName="phone" />
+    <div *ngIf="hasError('phone', 'required')" class="error">Phone is required.</div>
+    <div *ngIf="hasError('phone', 'pattern')" class="error">Must be 10 digits.</div>
+  </label>
+
+  <label>
+    Department:
+    <select formControlName="departmentId">
+      <option [ngValue]="null">-- Select Department --</option>
+      <option *ngFor="let dept of Department" [ngValue]="dept.id">
+        {{ dept.name }}
+      </option>
+    </select>
+    <div *ngIf="hasError('departmentId', 'required')" class="error">Department is required.</div>
+  </label>
+
+  <div *ngIf="registrationForm.get('departmentId')?.value !== null">
+    Selected Department ID: {{ registrationForm.get('departmentId')?.value }}
+  </div>
+
+  <label>
+    Manager:
+    <select formControlName="userId">
+      <option [ngValue]="null">-- Select Manager --</option>
+      <option *ngFor="let user of User" [ngValue]="user.id">
+        {{ user.name }}
+      </option>
+    </select>
+    <div *ngIf="hasError('userId', 'required')" class="error">Manager is required.</div>
+  </label>
+
+  <div *ngIf="registrationForm.get('userId')?.value !== null">
+    Selected Manager ID: {{ registrationForm.get('userId')?.value }}
+  </div>
+
+  <label>
+    Username:
+    <input formControlName="username" />
+    <div *ngIf="hasError('username', 'required')" class="error">Username is required.</div>
+  </label>
+
+  <label>
+    Password:
+    <input type="password" formControlName="password" />
+    <div *ngIf="hasError('password', 'required')" class="error">Password is required.</div>
+  </label>
+
+  <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+</form>

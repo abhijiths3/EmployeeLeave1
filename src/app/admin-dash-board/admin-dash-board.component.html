@@ -2,7 +2,8 @@
   <h1> 🧩 Leave Manager</h1>
   <div class="header-right">
     <span class="hamburger">&#9776;</span>
-    <button class="logout-btn">Logout</button>
+    <button class="logout-btn" (click)="onLogout()">Logout</button>
+
   </div>
 </header>
 
@@ -14,7 +15,8 @@
       <li><a routerLink="employees">🛡️ Employees</a></li>
       <li><a routerLink="types">📄 Leave Types</a></li>
       <li><a routerLink="departments">🏢 Departments</a></li> 
-      <li><a routerLink="requests">📋 Leave Requests</a></li>     
+      <li><a routerLink="requests">📋 Leave Requests</a></li>
+      <li><a routerLink="annualReset">🔄 AnnualReset</a></li>       
     </ul>
   </nav>
 
