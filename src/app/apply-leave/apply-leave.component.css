@@ -1,0 +1,9 @@
+.head1{
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #1e5a5d, #5cc9e7);
+    color: #ffffff;
+    padding: 20px 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

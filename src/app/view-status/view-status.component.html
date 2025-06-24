@@ -1,0 +1,46 @@
+<!-- No Department Message Template -->
+<ng-template #noRequest>
+  <div class="alert alert-info text-center mt-4" role="alert">
+    <p *ngIf="!isLoading && Request.length === 0 && !errormessage">No Request Found</p>
+  </div>
+</ng-template>
+
+<!-- Error Message -->
+<div *ngIf="errormessage" class="alert alert-danger text-center mt-3" role="alert">
+  {{ errormessage }}
+</div>
+
+<!-- Request Table -->
+<div class="table-responsive mt-4">
+  <table
+    *ngIf="!isLoading && Request.length > 0; else noRequest"
+    class="table table-bordered table-hover table-striped text-center align-middle"
+  >
+    <thead class="table-dark">
+      <tr>
+        <th>🏢 Request Type</th>
+        <th>Reason</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of Request">
+        <td>{{ request.Type }}</td>
+        <td>{{ request.Reason }}</td>
+        <td>{{ request.StartDate }}</td>
+        <td>{{ request.EndDate }}</td>
+        <td> <span
+        [ngClass]="{
+          'text-warning fw-bold': request.Status === 'Requested',
+          'text-success fw-bold': request.Status === 'Approved',
+          'text-danger fw-bold': request.Status === 'Rejected'
+        }"
+      >
+        {{ request.Status }}
+      </span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

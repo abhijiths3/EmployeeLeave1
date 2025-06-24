@@ -39,16 +39,22 @@ export class LoginComponent implements OnInit {
     console.log("Form submitted:", this.userForm.value);
     if (this.userForm.valid) {
       this.isLoading = true;
+      
       this.loginService.authenticate(this.userForm.value).subscribe({
-        next: (res: { message: string; role?: string }) => {
+        next: (res: { message: string; role?: string; id: number; }) => {
+          localStorage.setItem('employeeId', res.id.toString());
+          console.log('Stored employee ID:', localStorage.getItem('employeeId'));
           console.log('Login successful:', res.message);
           this.isLoading = false;
-
+           if (res.role === 'Employee') {
+            this.router.navigate(['/EmployeeHome']);
+          }
           if (res.role === 'Admin') {
             this.router.navigate(['/admindash']);
           } else {
             this.errormessage = 'Access denied: Not an admin.';
           }
+          
         },
         error: (err: any) => {
           this.errormessage = 'Login failed. Please try again.';

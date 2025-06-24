@@ -1,0 +1,28 @@
+<header class="header">
+    <h1>🧩 Welcome to MyLeave</h1>
+    <div class="header-right">
+        <span class="menu-icon">&#9776;</span>
+        <button class="logout-btn" (click)="onLogout()">Sign Out</button>
+    </div>
+</header>
+
+<div class="layout">
+    <nav class="sidebar">
+        <h2>Employee Menu</h2>
+        <ul>
+            <li><a routerLink="ApplyLeave">📝 Request Leave</a></li>
+            <li><a routerLink="ViewStatus">📊 View Status</a></li>
+            <li><a routerLink="profile">👤 My Profile</a></li>
+            <li><a routerLink="about">ℹ️ About This App</a></li>
+        </ul>
+    </nav>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+
+
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 MyLeave Portal. All rights reserved.</p>
+</footer>

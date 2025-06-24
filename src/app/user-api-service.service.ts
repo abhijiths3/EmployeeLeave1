@@ -85,6 +85,17 @@ registerEmployee(employeeData: any): Observable<any> {
 createLogin(login: any): Observable<any> {
   return this.http.post<any>('https://localhost:7225/api/Login', login);
 }
+submitLeave(LeaveRequest: any): Observable<any> {
+  return this.http.post<any>('https://localhost:7225/api/LeaveRequest', LeaveRequest, {
+    withCredentials: true
+  });
+}
 
+getUserById(requestId: number) {
+  const apiUrl = `https://localhost:7225/api/Employee/${requestId}`;
+  return this.http.get(apiUrl,{
+    withCredentials: true
+  });
+}
 
 }

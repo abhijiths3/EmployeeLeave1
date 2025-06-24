@@ -1,0 +1,30 @@
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.about-slide {
+      color: white; 
+   background: linear-gradient(to right, #22676a, #5cc9e7);
+  border-left: 4px solid #080808;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.about-slide h2 {
+  margin-bottom: 0.75rem;
+}
+
+.about-slide p,
+.about-slide li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.about-slide ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}

@@ -1,0 +1,39 @@
+<div class="profile-wrapper" *ngIf="User; else loadingOrError">
+  <h2>Employee Profile</h2>
+
+  <!-- Personal Information -->
+  <section class="profile-section" id="personal">
+    <h3>👤 Personal Information</h3>
+    <div class="profile-block">
+      <div><strong>Name:</strong> {{ User.EmployeeName }}</div>
+      <div><strong>Phone:</strong> {{ User.phone || 'N/A' }}</div>
+      <div><strong>Age:</strong> {{ User.Age }}</div>
+      <div><strong>Email:</strong> {{ User.Email }}</div>
+    </div>
+  </section>
+
+  <!-- Leave Summary -->
+  <section class="profile-section" id="leave">
+    <h3>🌿 Leave Summary</h3>
+    <div class="profile-block">
+      <div><strong>Leave Balance:</strong> {{ User.LeaveBalance ?? 'Not Available' }} Days</div>
+    </div>
+  </section>
+
+  <!-- Company Info -->
+  <section class="profile-section" id="company">
+    <h3>🏢 Company Details</h3>
+    <div class="profile-block">
+      <div><strong>Department:</strong> {{ User.DepartmentName ?? 'Unassigned' }}</div>
+      <div><strong>Manager:</strong> {{ User.ManagerName ?? 'N/A' }}</div>
+    </div>
+  </section>
+</div>
+
+<!-- Fallback UI -->
+<ng-template #loadingOrError>
+  <div *ngIf="isLoading" class="text-center mt-4">⏳ Loading profile...</div>
+  <div *ngIf="!isLoading && errormessage" class="alert alert-danger text-center mt-4">
+    {{ errormessage }}
+  </div>
+</ng-template>
