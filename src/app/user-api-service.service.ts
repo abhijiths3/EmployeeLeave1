@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserApiServiceService {
+  clearSession() {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl='https://localhost:7225/api/Employee';
  
   private loginUrl='https://localhost:7225/api/Authorization/login';

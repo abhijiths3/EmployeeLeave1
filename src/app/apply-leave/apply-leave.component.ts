@@ -27,6 +27,7 @@ leaveForm: FormGroup;
       endDate: ['', Validators.required]
     });
   }
+  
 ngOnInit() {
   this.loadTypes();
 }

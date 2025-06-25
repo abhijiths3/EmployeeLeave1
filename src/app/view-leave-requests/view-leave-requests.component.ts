@@ -24,18 +24,21 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
   hasError(controlName: string, errorType: string): boolean {
     return this.userForm.get(controlName)?.hasError(errorType) ?? false;
   }
-  loadRequests() {
-    this.loginService.getRequests().subscribe({
-      
-      next: (request) => {
-        console.log('Fetched Requests:', request); 
-        this.Request = request;
-      },
-      error: () => {
-        this.errormessage = 'Failed to load departments.';
-      }
-    });
-  }
+loadRequests() {
+  this.loginService.getRequests().subscribe({
+    next: (request) => {
+      //filter and sort
+      const filtered = request.filter((r: any) => r.Status === 'Requested'). 
+      sort((a: any, b: any) => new Date(b.SubmissionDate).getTime() - new Date(a.SubmissionDate).getTime());
+      console.log('Filtered Requests:', filtered);
+      this.Request = filtered;
+    },
+    error: () => {
+      this.errormessage = 'Failed to load departments.';
+    }
+  });
+}
+
   
 handleDecision(request: any, action: 'accept' | 'reject') {
   const status = action === 'accept' ? 'Approved' : 'Rejected';

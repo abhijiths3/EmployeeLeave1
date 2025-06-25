@@ -15,6 +15,7 @@ constructor(private authService:UserApiServiceService, private router: Router){}
 onLogout(){
   this.authService.logOut().subscribe({
     next: () => {
+      localStorage.clear();
       this.router.navigate(['/login']);
     },
     error: () => {
@@ -22,4 +23,9 @@ onLogout(){
     }
   });
 }
+    ngOnInit(){
+    if(localStorage.getItem('employeeId') === null){
+      this.router.navigate(['/login'])
+    }
+  }
 }

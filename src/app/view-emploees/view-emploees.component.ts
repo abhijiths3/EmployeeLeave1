@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { UserApiServiceService } from '../user-api-service.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-view-emploees',
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,FormsModule],
   templateUrl: './view-emploees.component.html',
   styleUrl: './view-emploees.component.css'
 })
@@ -17,6 +17,8 @@ export class ViewEmploeesComponent {
   errormessage: string = '';
   isLoading = false;
   User: any[] = [];
+  searchTerm: string = '';
+
 
 constructor(private fb: FormBuilder, private loginService: UserApiServiceService) {}
   ngOnInit() {
@@ -31,6 +33,16 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
   hasError(controlName: string, errorType: string): boolean {
     return this.userForm.get(controlName)?.hasError(errorType) ?? false;
   }
+filteredUsers(): any[] {
+  const term = this.searchTerm.toLowerCase().trim();
+  return this.User.filter(user =>
+    (user.EmployeeName || '').toLowerCase().includes(term) ||
+    (user.Email || '').toLowerCase().includes(term) ||
+    (user.DepartmentName || '').toLowerCase().includes(term)
+  );
+}
+
+
   loadUsers() {
   this.loginService.getUser().subscribe({
     next: (response: any) => {
@@ -50,5 +62,6 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
     }
   });
 }
+
 
 }

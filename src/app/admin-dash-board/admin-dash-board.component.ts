@@ -11,11 +11,17 @@ import { UserApiServiceService } from '../user-api-service.service';
 })
 export class AdminDashBoardComponent {
  constructor(private authService: UserApiServiceService, private router: Router) {}
-
+    ngOnInit(){
+    if(localStorage.getItem('employeeId') === null){
+      this.router.navigate(['/login'])
+    }
+  }
   onLogout() {
     this.authService.logOut().subscribe({
       next: () => {
+        localStorage.clear();
         this.router.navigate(['/login']); 
+         this.authService.clearSession(); 
       },
       error: () => {
         alert("Logout failed. Please try again.");
