@@ -1,29 +1,5 @@
-<!-- No User Message Template -->
-<!-- <ng-template #noUsers>
-  <p *ngIf="!isLoading && User.length === 0 && !errormessage">No User Found</p>
-</ng-template> -->
 
-<!-- Error Message -->
-<!-- <p *ngIf="errormessage" class="error">{{ errormessage }}</p> -->
-
-<!-- User Table -->
-<!-- <table *ngIf="!isLoading && User.length > 0; else noUsers" class="user-table">
-  <thead>
-    <tr>
-      <th>Employee Name</th>
-      <th>Email</th>
-      <th>Department</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of User">
-      <td>{{ user.EmployeeName }}</td>
-      <td>{{ user.Email }}</td>
-      <td>{{ user.DepartmentName }}</td>
-    </tr> 
-  </tbody>
-</table> -->
-<!-- No Users Message Template -->
+<!-- No Users Message -->
 <ng-template #noUsers>
   <p *ngIf="!isLoading && User.length === 0 && !errormessage">
     No users found.
@@ -32,8 +8,6 @@
 
 <!-- Error Message -->
 <p *ngIf="errormessage" class="error">{{ errormessage }}</p>
-
-<!-- User Table -->
 <table *ngIf="!isLoading && User.length > 0; else noUsers" class="user-table">
   <thead>
     <tr>
@@ -50,3 +24,4 @@
     </tr>
   </tbody>
 </table>
+

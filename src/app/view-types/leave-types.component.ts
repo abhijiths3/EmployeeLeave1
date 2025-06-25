@@ -17,9 +17,6 @@ export class LeaveTypesComponent {
   isLoading = false;
   Type: any[] = [];
 constructor(private fb: FormBuilder, private loginService: UserApiServiceService) {}
-
-// userForm!: FormGroup;
-
 ngOnInit(): void {
    this.loadTypes();
   this.userForm = this.fb.group({
@@ -27,7 +24,6 @@ ngOnInit(): void {
     Description: ['']
   });
 }
-
 
   hasError(controlName: string, errorType: string): boolean {
     return this.userForm.get(controlName)?.hasError(errorType) ?? false;
@@ -51,7 +47,7 @@ toggleForm() {
 }
 
 addLeaveType() {
- const data = this.userForm.value; // Already has correct keys: Type, Description
+ const data = this.userForm.value; 
 
 console.log('Sending:', data);
 console.log('Form values:', this.userForm.value);

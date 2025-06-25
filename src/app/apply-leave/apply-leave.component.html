@@ -4,33 +4,27 @@
       <h4 class="content">♻️ Request Leave</h4>
     </div>
     <div class="card-body">
-      <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="typeId" class="form-label">Leave Type</label>
+    <select
+      id="typeId"
+      class="form-control"
+      formControlName="typeId"
+    >
+      <option value="" disabled selected>Select Leave Type</option>
+     <option *ngFor="let type of Type" [value]="type.Id">
+  {{ type.Type }}
+</option>
 
-        <!-- <div class="mb-3">
-          <label for="employeeId" class="form-label">Employee ID</label>
-          <input
-            type="number"
-            id="employeeId"
-            class="form-control"
-            formControlName="employeeId"
-          />
-          <div *ngIf="hasError('employeeId', 'required')" class="text-danger small">
-            Employee ID is required.
-          </div>
-        </div> -->
+    </select>
+    
+    <div *ngIf="leaveForm.get('typeId')?.touched && leaveForm.get('typeId')?.hasError('required')" class="text-danger small">
+      Leave type is required.
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label for="typeId" class="form-label">Leave Type ID</label>
-          <input
-            type="number"
-            id="typeId"
-            class="form-control"
-            formControlName="typeId"
-          />
-          <div *ngIf="hasError('typeId', 'required')" class="text-danger small">
-            Leave type is required.
-          </div>
-        </div>
+
 
         <div class="mb-3">
           <label for="reason" class="form-label">Reason</label>

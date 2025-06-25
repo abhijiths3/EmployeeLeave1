@@ -15,8 +15,7 @@ export class AdminDashBoardComponent {
   onLogout() {
     this.authService.logOut().subscribe({
       next: () => {
-        // Optionally clear local storage or tokens
-        this.router.navigate(['/login']); // Redirect to login or homepage
+        this.router.navigate(['/login']); 
       },
       error: () => {
         alert("Logout failed. Please try again.");

@@ -23,6 +23,30 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
   hasError(controlName: string, errorType: string): boolean {
     return this.userForm.get(controlName)?.hasError(errorType) ?? false;
   }
+
+// Handling both plain array and WCF-style $values response
+loadDepartments() {
+  this.loginService.getDepartment().subscribe({
+    next: (response: any) => {
+      const departments = Array.isArray(response)
+        ? response
+        : response?.$values || [];
+
+      this.Department = departments.map((d: any) => ({
+        ...d,
+        id: Number(d.departmentId || d.id),       
+        departmentName: d.departmentName || d.DepartmentName 
+      }));
+
+      console.log('Loaded Departments:', this.Department);
+    },
+    error: (err) => {
+      this.errormessage = 'Failed to load departments.';
+      console.error('Error loading departments:', err);
+    }
+  });
+}
+
   // loadDepartments() {
   //   this.loginService.getDepartment().subscribe({
       
@@ -35,27 +59,4 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
   //     }
   //   });
   // }
-loadDepartments() {
-  this.loginService.getDepartment().subscribe({
-    next: (response: any) => {
-      // Handle both plain array and WCF-style $values response
-      const departments = Array.isArray(response)
-        ? response
-        : response?.$values || [];
-
-      this.Department = departments.map((d: any) => ({
-        ...d,
-        id: Number(d.departmentId || d.id),         // Use correct ID field
-        departmentName: d.departmentName || d.DepartmentName // Allow for case variations
-      }));
-
-      console.log('Loaded Departments:', this.Department);
-    },
-    error: (err) => {
-      this.errormessage = 'Failed to load departments.';
-      console.error('Error loading departments:', err);
-    }
-  });
-}
-
 }

@@ -1,4 +1,4 @@
-<!-- No Type Message Template -->
+<!-- No Type Message  -->
 <ng-template #noType>
   <p *ngIf="!isLoading && Type.length === 0 && !errormessage">No Type Found</p>
 </ng-template>
@@ -6,7 +6,7 @@
 <!-- Error Message -->
 <p *ngIf="errormessage" class="error">{{ errormessage }}</p>
 
-<!-- Styled Table -->
+
 <table *ngIf="!isLoading && Type.length > 0; else noType" class="type-table">
   <thead>
     <tr>
@@ -21,10 +21,7 @@
     </tr>
   </tbody>
 </table>
-<!-- Add Type Button -->
 <button (click)="toggleForm()" class="add-btn">➕ Add Type</button>
-
-<!-- Collapsible Form -->
 <form [formGroup]="userForm" *ngIf="showForm">
   <label>Type Name:</label>
   <input formControlName="Type" type="text" placeholder="e.g., Sick Leave" />

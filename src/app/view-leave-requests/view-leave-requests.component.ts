@@ -40,7 +40,7 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
 handleDecision(request: any, action: 'accept' | 'reject') {
   const status = action === 'accept' ? 'Approved' : 'Rejected';
 
-  const requestId = request.Id; // Use the correct property name from your model
+  const requestId = request.Id; 
 
   if (!requestId) {
     console.error('Request ID not found:', request);
@@ -51,7 +51,7 @@ handleDecision(request: any, action: 'accept' | 'reject') {
   this.loginService.acceptOrRejectRequest(requestId, status).subscribe({
     next: () => {
       alert(`Request has been ${status.toLowerCase()}.`);
-      this.loadRequests(); // 🔄 Refresh the table
+      this.loadRequests(); 
     },
     error: (err) => {
       console.error('Error while updating request:', err);

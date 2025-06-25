@@ -1,12 +1,9 @@
-<!-- No Request Message Template -->
 <ng-template #noRequest>
   <p *ngIf="!isLoading && Request.length === 0 && !errormessage">No Request Found</p>
 </ng-template>
 
 <!-- Error Message -->
 <p *ngIf="errormessage" class="error">{{ errormessage }}</p>
-
-<!-- Styled Request Table -->
 <table *ngIf="!isLoading && Request.length > 0; else noRequest" class="request-table">
   <thead>
     <tr>

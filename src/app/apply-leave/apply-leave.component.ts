@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserApiServiceService } from '../user-api-service.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-apply-leave',
@@ -13,8 +14,8 @@ import { CommonModule } from '@angular/common';
 export class ApplyLeaveComponent {
 leaveForm: FormGroup;
   submitted = false;
-
-  constructor(private fb: FormBuilder, private service: UserApiServiceService) {
+  Type: any[] = [];
+  constructor( private snackBar: MatSnackBar, private fb: FormBuilder, private service: UserApiServiceService) {
     const idFromStorage = localStorage.getItem('employeeId');
     const parsedId = idFromStorage ? parseInt(idFromStorage, 10) : null;
 
@@ -26,20 +27,44 @@ leaveForm: FormGroup;
       endDate: ['', Validators.required]
     });
   }
+ngOnInit() {
+  this.loadTypes();
+}
 
   onSubmit() {
     this.submitted = true;
     if (this.leaveForm.valid) {
+      console.log("Values entererd:",this.leaveForm.value);
       this.service.submitLeave(this.leaveForm.value).subscribe({
         next: () => {
-          alert('Leave request submitted!');
+           this.snackBar.open('Leave request submitted!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
           this.leaveForm.reset();
           this.submitted = false;
         },
-        error: () => alert('Failed to submit leave request.')
+        error: () =>  this.snackBar.open('Failed to submit leave request!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          })
       });
     }
   }
+ loadTypes() {
+  this.service.getType().subscribe({
+    next: (types) => {
+      console.log('Fetched types:', types);
+      this.Type = types;
+    },
+    error: (err) => {
+      console.error('Failed to load leave types', err);
+     
+    }
+  });
+}
 
   hasError(field: string, error: string) {
     const ctrl = this.leaveForm.get(field);

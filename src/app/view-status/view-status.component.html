@@ -1,4 +1,3 @@
-<!-- No Department Message Template -->
 <ng-template #noRequest>
   <div class="alert alert-info text-center mt-4" role="alert">
     <p *ngIf="!isLoading && Request.length === 0 && !errormessage">No Request Found</p>
@@ -9,8 +8,6 @@
 <div *ngIf="errormessage" class="alert alert-danger text-center mt-3" role="alert">
   {{ errormessage }}
 </div>
-
-<!-- Request Table -->
 <div class="table-responsive mt-4">
   <table
     *ngIf="!isLoading && Request.length > 0; else noRequest"

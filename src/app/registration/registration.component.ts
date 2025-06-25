@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserApiServiceService } from '../user-api-service.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-registration',
   standalone: true,
@@ -20,7 +20,8 @@ export class RegistrationComponent {
   constructor(
     private fb: FormBuilder,
     private service: UserApiServiceService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.registrationForm = this.fb.group({
       employeeName: ['', Validators.required],
@@ -95,15 +96,27 @@ export class RegistrationComponent {
           login.userId = res.id || res.userId;
           this.service.createLogin(login).subscribe({
             next: () => {
-              alert('Registration successful!');
-              this.registrationForm.reset();
+            this.snackBar.open('Registration successful!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+                        this.registrationForm.reset();
               this.formSubmitted = false;
               this.router.navigate(['/login']);
             },
-            error: () => alert('Login creation failed.')
+            error: () =>  this.snackBar.open('Login Creation failed', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          })
           });
         },
-        error: () => alert('Employee registration failed.')
+        error: () =>  this.snackBar.open('Registration Failed!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          })
 
 
       });

@@ -1,16 +1,5 @@
 <!-- Error message -->
 <p *ngIf="errormessage" class="error">{{errormessage}}</p>
-
-<!-- User List
-<ul *ngIf="!isLoading && User.length > 0; else noUsers">
-  <li *ngFor="let user of User">
-      <strong>{{ user.EmployeeName }}</strong><br />
-      <strong>{{ user.Email }}</strong><br />
-      <strong>{{ user.DepartmentName }}</strong>
-  </li>
-</ul> -->
-
-<!-- No User Message -->
 <ng-template #noUsers>
     <p *ngIf="!isLoading && User.length === 0 && !errormessage">No User Found</p>
 </ng-template>
@@ -20,12 +9,21 @@
   <form [formGroup]="userForm" (ngSubmit)="login()">
       <label>Username:</label>
       <input formControlName="username" type="text"/>
-      <div class="error" *ngIf="hasError('username','required')">Username is required</div>
+    <div class="error" *ngIf="userForm.get('username')?.touched && hasError('username','required')">
+     Username is required
+    </div>
       <br />
 
       <label>Password:</label>
       <input formControlName="password" type="password"/>
-      <div class="error" *ngIf="hasError('password','required')">Password is required</div>
+      
+<div class="error" *ngIf="userForm.get('password')?.touched && hasError('password','required')">
+  Password is required
+</div>
+<div class="error" *ngIf="userForm.get('password')?.hasError('minlength')">
+  Minimum length 4
+</div>
+
       <br />
 
       <button type="submit">Login</button>

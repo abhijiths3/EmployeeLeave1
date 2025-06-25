@@ -31,18 +31,6 @@ constructor(private fb: FormBuilder, private loginService: UserApiServiceService
   hasError(controlName: string, errorType: string): boolean {
     return this.userForm.get(controlName)?.hasError(errorType) ?? false;
   }
-  // loadUsers() {
-  //   this.loginService.getUser().subscribe({
-      
-  //     next: (users) => {
-  //       console.log('Fetched users:', users); 
-  //       this.User = users;
-  //     },
-  //     error: () => {
-  //       this.errormessage = 'Failed to load users.';
-  //     }
-  //   });
-  // }
   loadUsers() {
   this.loginService.getUser().subscribe({
     next: (response: any) => {
