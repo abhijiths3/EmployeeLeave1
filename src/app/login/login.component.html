@@ -1,9 +1,3 @@
-<!-- Error message -->
-<p *ngIf="errormessage" class="error">{{errormessage}}</p>
-<ng-template #noUsers>
-    <p *ngIf="!isLoading && User.length === 0 && !errormessage">No User Found</p>
-</ng-template>
-
 <div>
   <h1> Login </h1>
   <form [formGroup]="userForm" (ngSubmit)="login()">

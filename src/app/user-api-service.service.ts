@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -100,5 +101,11 @@ getUserById(requestId: number) {
     withCredentials: true
   });
 }
-
+editProfile(requestId: number, data: { id: Number; EmployeeName: string; Age?: Number; Phone?: String; Email?: String;}): Observable<any> {
+  console.log("Passed to backend",data);
+  const apiUrl = `https://localhost:7225/api/Employee/${requestId}`;
+  return this.http.put(apiUrl,data,{
+    withCredentials: true
+  })
+}
 }

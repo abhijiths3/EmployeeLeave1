@@ -9,6 +9,24 @@
       <div><strong>Phone:</strong> {{ User.Phone || 'N/A' }}</div>
       <div><strong>Age:</strong> {{ User.Age }}</div>
       <div><strong>Email:</strong> {{ User.Email }}</div>
+      <div>
+        <button (click)="toggleForm()" class="add-btn">Edit</button>
+        <form [formGroup]="userForm" *ngIf="showForm">
+          <label>Name: </label>
+          <input formControlName="EmployeeName" type="text" placeholder="{{User.EmployeeName}}"/>
+
+          <label>Age: </label>
+          <input formControlName="Age" type="text" placeholder="{{User.Age}}" />
+
+          <label>Email: </label>
+          <input formControlName="Email" type="text" placeholder="{{User.Email}}" />
+
+          <label>Phone: </label>
+          <input formControlName="Phone" type="text" placeholder="{{User.Phone}}" />
+
+          <button type="button" (click)="editProfile()">Save Changes</button>
+        </form>
+      </div>
     </div>
   </section>
 
